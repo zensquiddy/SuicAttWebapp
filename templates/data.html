@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% set active_page = "data" %}
+
+{% block title %}Data{% endblock %}
+
+{% block content %}
+    <!--page content-->
+    <h2>Welcome to the Data section!</h2>
+	<br>
+	<p> Below is a drop box. Select one of the options below. The options consist of suicide attack groups. Once selected press sumbit and it will give you the average of weapons, people killed, and the assailants who commited the crime.</p>
+	<br>
+	
+	<form action="/showFact">
+          <select name="group"> <!-- A select element creates a drop-down box with options to select from. Note: add onchange="this.form.submit()" to submit/update the form when an option is selected.  Usefull for then displaying county options. -->
+            {% for g in groups %} <!-- Loop through the list of states and add an option element for each state -->
+                <option value="{{ g }}">{{ g }}</option>
+            {% endfor %}
+          </select>
+          <br><br>
+          <input type="submit" id="sumbitbutton" value="Get a fun fact!">
+        </form>
+        <div id="funFact">
+            <p>{{ funFact }}</p>
+        </div>
+		
+{% endblock %}
