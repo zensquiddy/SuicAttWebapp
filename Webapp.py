@@ -14,8 +14,8 @@ def home():
 @app.route('/data')
 def data():
     groups = get_group_options()
-    date = get_dates_options()
-    return render_template('data.html', group_options=groups, dates_options=date)
+    dates = get_dates_options()
+    return render_template('data.html', group_options=groups, dates_options=dates)
 
 @app.route('/credit')
 def credit():
@@ -26,11 +26,11 @@ def credit():
 @app.route('/date')
 def render_date():
     dates = get_dates_options()
-    date = request.args.get('dates')
-    response = ofdate(dates)
+    date = int(request.args.get('dates'))
+    response = ofdate(date)
     dfact1 = "Highest Estimated Ammount of Deaths: " + str(response[0]["Highest Estimated Ammount of Deaths"])
     dfact2 = "Lowest Estimated Ammount of Deaths: " + str(response[0]["Lowest Estimated Ammount of Deaths"])
-    return render_template('data.html', dates_options=date, group_options=get_group_options(), dFact1=dfact1, dFact2=dfact2)
+    return render_template('data.html', dates_options=dates, group_options=get_group_options(), dFact1=dfact1, dFact2=dfact2)
 
     
 @app.route('/groups')    
@@ -95,10 +95,10 @@ def get_dates_options():
         date = json.load(suicide_data)
     dates=[]
     
-    for d in dates:
-        if d["date"]["year"] not in date:
+    for d in date:
+        if d["date"]["year"] not in dates:
             dates.append(d["date"]["year"])
-    
+    print(dates)
     return dates
     
 def ofdate(dates):
@@ -107,10 +107,10 @@ def ofdate(dates):
         date = json.load(suicide_data)
         for time in date: 
             if time["date"]["year"] == dates:
-                attack["statistics"]["# killed_high"]
-                counts["Highest Estimated Ammount of Deaths"] = counts["Highest Estimated Ammount of Deaths"] + attack["statistics"]["# killed_high"]
-                attack["statistics"]["# killed_low"]
-                counts["Lowest Estimated Ammount of Deaths"] = counts["Lowest Estimated Ammount of Deaths"] +  attack["statistics"]["# killed_low"]
+                
+                counts["Highest Estimated Ammount of Deaths"] = counts["Highest Estimated Ammount of Deaths"] + time["statistics"]["# killed_high"]
+                
+                counts["Lowest Estimated Ammount of Deaths"] = counts["Lowest Estimated Ammount of Deaths"] +  time["statistics"]["# killed_low"]
 
     lol = [counts]
     return lol

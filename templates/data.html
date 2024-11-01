@@ -60,8 +60,8 @@
           <select name="dates"> <!-- A select element creates a drop-down box with options to select from. Note: add onchange="this.form.submit()" to submit/update the form when an option is selected.  Usefull for then displaying county options. -->
 				<option>Select one.</option>
 				{% for d in dates_options %} <!-- Loop through the list of states and add an option element for each state -->
-                <option value="{{ d }}">{{ d }}</option>
-            {% endfor %}
+					<option value="{{ d }}">{{ d }}</option>
+				{% endfor %}
 		  </select>
           <br><br>
           <input type="submit" id="sumbitbutton" value="Submit">
