@@ -8,11 +8,12 @@
     <!--page content-->
     <h2>Welcome to the Data section!</h2>
 	<br>
-	<p> Below is a drop box. Select one of the options below. The options consist of suicide attack groups. Once selected press sumbit and it will give you the average of weapons, people killed, and the assailants who commited the crime.</p>
+	<p> Below is a drop box. Select one of the options below. The options consist of suicide attack groups. Once selected press sumbit and it will give you the amount of each weapon used, The estimate of how many people where killed by chosen group, and the status of how many were claimed by that group or possibly from that group.</p>
 	<br>
 	
 	<form action="/groups">
-          <select name="groups"> <!-- A select element creates a drop-down box with options to select from. Note: add onchange="this.form.submit()" to submit/update the form when an option is selected.  Usefull for then displaying county options. -->
+          <select name="group"> <!-- A select element creates a drop-down box with options to select from. Note: add onchange="this.form.submit()" to submit/update the form when an option is selected.  Usefull for then displaying county options. -->
+				<option>Select one.</option>
 				{% for g in group_options %} <!-- Loop through the list of states and add an option element for each state -->
                 <option value="{{ g }}">{{ g }}</option>
             {% endfor %}
@@ -29,4 +30,48 @@
 		<div id="Fact3">
 			<p>{{ Fact3 }}</p>
 		</div>
+		<div id="Fact4">
+			<p>{{ Fact4 }}</p>
+		</div>
+		<div id="Fact5">
+			<p>{{ Fact5 }}</p>
+		</div>
+		<div id="Fact6">
+			<p>{{ Fact6 }}</p>
+		</div>
+		<div id="Fact7">
+			<p>{{ Fact7 }}</p>
+		</div>
+		<div id="Fact8">
+			<p>{{ Fact8 }}</p>
+		</div>
+		<div id="Fact9">
+			<p>{{ Fact9 }}</p>
+		</div>
+		<div id="Fact10">
+			<p>{{ Fact10 }}</p>
+		</div>
+		
+	<br>
+	<p>This dropdown below will show all deaths that happended during that year.</p>
+	<br>
+	
+	<form action="/date">
+          <select name="dates"> <!-- A select element creates a drop-down box with options to select from. Note: add onchange="this.form.submit()" to submit/update the form when an option is selected.  Usefull for then displaying county options. -->
+				<option>Select one.</option>
+				{% for d in dates_options %} <!-- Loop through the list of states and add an option element for each state -->
+                <option value="{{ d }}">{{ d }}</option>
+            {% endfor %}
+		  </select>
+          <br><br>
+          <input type="submit" id="sumbitbutton" value="Submit">
+        </form>	
+		 <div id="dFact1">
+            <p>{{ dFact1 }}</p>
+        </div>
+		<div id="dFact2">
+			<p>{{ dFact2 }}</p>
+		</div>
+	
+		
 {% endblock %}
